@@ -13,6 +13,7 @@ function ShortenSection() {
     JSON.parse(storedData!) || [],
   );
   const [longLink, setLongLink] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   const urlRegex = new RegExp(
@@ -27,6 +28,7 @@ function ShortenSection() {
   // useEffect(() => {
   async function getShortenedLink(longLink: string) {
     try {
+      setIsLoading(true);
       const response = await fetch(
         `http://tinyurl.com/api-create.php?url=${longLink}`,
       );
@@ -38,10 +40,11 @@ function ShortenSection() {
         longLink,
         shortLink: data,
       };
-
+      setIsLoading(false);
       setShortenedLinks((prevLinks) => [...prevLinks, newData]);
     } catch (error) {
       setError("Something went wrong, please try again");
+      setIsLoading(false);
     }
   }
 
@@ -107,22 +110,27 @@ function ShortenSection() {
         <p className="pt-4 text-[1.6rem] italic leading-[1.8rem] tracking-[0.0109rem] text-[#f46363]">
           {error}
         </p>
+        {isLoading && (
+          <p className="pt-4 text-[1.6rem] italic leading-[1.8rem] tracking-[0.0109rem] text-[#2bd0d0]">
+            Getting your link...
+          </p>
+        )}
       </section>
 
-      {shortenedLinks.length > 0 && (
-        <section className="space-y-7 pt-10">
-          {shortenedLinks.map((link, index) => (
-            <ShortenedLinks
-              key={link.shortLink}
-              longLink={link.longLink}
-              shortLink={link.shortLink}
-              index={index}
-              onDelete={() => handleDelete(index)}
-              onCopyLink={() => handleCopyLink(link.shortLink)}
-            />
-          ))}
-        </section>
-      )}
+      {/* {shortenedLinks.length > 0 && ( */}
+      <section className="space-y-7 pt-10">
+        {shortenedLinks.map((link, index) => (
+          <ShortenedLinks
+            key={link.shortLink}
+            longLink={link.longLink}
+            shortLink={link.shortLink}
+            index={index}
+            onDelete={() => handleDelete(index)}
+            onCopyLink={() => handleCopyLink(link.shortLink)}
+          />
+        ))}
+      </section>
+      {/* )} */}
     </section>
   );
 }

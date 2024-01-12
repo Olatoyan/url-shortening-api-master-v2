@@ -6,8 +6,8 @@ import { useState } from "react";
 type ShortenedLinksProps = {
   longLink: string;
   shortLink: string;
-  onDelete: (index: number) => void;
   index: number;
+  onDelete: (index: number) => void;
   onCopyLink: (link: string) => void;
 };
 // e?: MouseEvent<HTMLButtonElement>
