@@ -3,8 +3,8 @@ import Logo from "./Logo";
 
 function Footer() {
   return (
-    <footer className="grid grid-cols-6 bg-[#232127] px-[16rem] py-28">
-      <div className="col-span-2">
+    <footer className="tablet:grid-cols-1 tablet:justify-items-center tablet:gap-16 grid grid-cols-6 bg-[#232127] px-[10rem] py-28">
+      <div className="tablet:col-span-1 tablet:w-[13rem] col-span-2">
         <Logo color="white" />
       </div>
 

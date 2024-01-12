@@ -7,7 +7,7 @@ type FooterListItemProps = {
 
 function FooterListItem({ title, items }: FooterListItemProps) {
   return (
-    <div className="space-y-9">
+    <div className="tablet:text-center space-y-9">
       <h4 className="text-[1.6rem] font-bold tracking-[-0.025rem] text-white">
         {title}
       </h4>

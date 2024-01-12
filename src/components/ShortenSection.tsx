@@ -26,19 +26,23 @@ function ShortenSection() {
   );
   // useEffect(() => {
   async function getShortenedLink(longLink: string) {
-    const response = await fetch(
-      `http://tinyurl.com/api-create.php?url=${longLink}`,
-    );
+    try {
+      const response = await fetch(
+        `http://tinyurl.com/api-create.php?url=${longLink}`,
+      );
 
-    const data = await response.text();
-    console.log(data);
+      const data = await response.text();
+      console.log(data);
 
-    const newData = {
-      longLink,
-      shortLink: data,
-    };
+      const newData = {
+        longLink,
+        shortLink: data,
+      };
 
-    setShortenedLinks((prevLinks) => [...prevLinks, newData]);
+      setShortenedLinks((prevLinks) => [...prevLinks, newData]);
+    } catch (error) {
+      setError("Something went wrong, please try again");
+    }
   }
 
   useEffect(() => {
@@ -75,24 +79,28 @@ function ShortenSection() {
     : "./bg-boost-desktop.svg";
 
   return (
-    <section className="mx-[16rem] -mt-40">
+    <section className="tablet:mx-20 mobile:mx-8 mx-[10rem] -mt-40">
       <section
         style={{
           background: `url(${backgroundImg}), linear-gradient(180deg, #3a3054, #3a3054)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className=" rounded-2xl px-24 py-20"
+        className=" mobile:px-10 mobile:py-10 rounded-2xl px-24 py-20"
       >
-        <form className="flex gap-10" onSubmit={handleSubmit}>
+        <form className="tablet:flex-col flex gap-10" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Shorten a link here..."
-            className="basis-full rounded-2xl px-12 py-6 text-[2rem] font-medium leading-[3.6rem] tracking-[0.015rem] text-[#34313d] placeholder:opacity-50 focus:border-none focus:outline-none"
+            className={`mobile:text-[1.6rem] mobile:px-4 basis-full rounded-2xl border-[3px] border-solid px-12 py-6 text-[2rem] font-medium leading-[3.6rem] tracking-[0.015rem] text-[#34313d] placeholder:opacity-50 focus:outline-none ${
+              error
+                ? "border-[#f46363] placeholder:text-[#f46363] focus:border-[#f46363]"
+                : "border-transparent focus:border-[3px]"
+            }`}
             value={longLink}
             onChange={(e) => setLongLink(e.target.value)}
           />
-          <button className="basis-[25rem] rounded-2xl bg-[#2bd0d0] px-12 py-7 text-[2rem] font-bold text-white transition-all duration-300 hover:bg-[#9AE3E3]">
+          <button className="tablet:basis-0 basis-[25rem] rounded-2xl bg-[#2bd0d0] px-12 py-7 text-[2rem] font-bold text-white transition-all duration-300 hover:bg-[#9AE3E3]">
             Shorten It!
           </button>
         </form>

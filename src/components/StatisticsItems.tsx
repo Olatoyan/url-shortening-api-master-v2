@@ -8,7 +8,7 @@ type StatisticsItemsProps = {
 function StatisticsItems({ img, heading, text, type }: StatisticsItemsProps) {
   return (
     <div
-      className={`z-10 flex flex-col items-start rounded-lg bg-white px-12 pb-16 ${
+      className={`tablet:items-center tablet:text-center z-10 flex flex-col items-start rounded-lg bg-white px-12 pb-16 ${
         type === "start"
           ? "self-start"
           : type === "center"

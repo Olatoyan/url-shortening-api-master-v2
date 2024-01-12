@@ -6,6 +6,12 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      screens: {
+        desktop: { max: "75em" },
+        laptop: { max: "64em" },
+        tablet: { max: "56.25em" },
+        mobile: { max: "37.5em" },
+      },
     },
   },
   plugins: [],

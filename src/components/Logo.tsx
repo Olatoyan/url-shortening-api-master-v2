@@ -1,7 +1,7 @@
 function Logo({ color }: { color: string }) {
   return (
     <svg
-      className={`h-[3.3rem] w-[14rem] ${
+      className={`h-[3.3rem] w-[18rem] ${
         color === "white" ? "fill-white" : "fill-[#34313d]"
       }`}
     >

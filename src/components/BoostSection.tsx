@@ -15,7 +15,7 @@ function BoostSection() {
       }}
       className="flex flex-col items-center gap-6 py-24"
     >
-      <h2 className="text-[4rem] font-bold leading-[4.8rem] tracking-[-0.1rem] text-white">
+      <h2 className="mobile:text-[2.8rem] mobile:tracking-[-0.07rem] text-[4rem] font-bold leading-[4.8rem] tracking-[-0.1rem] text-white">
         Boost your links today
       </h2>
       <Link
