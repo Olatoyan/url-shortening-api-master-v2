@@ -26,7 +26,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://github.com/Olatoyan/url-shortening-api-master-v2](https://github.com/Olatoyan/url-shortening-api-master-v2)
 - Live Site URL: [https://toyan-url-shortener-v2.netlify.app/](https://toyan-url-shortener-v2.netlify.app/)
 
 ## My process
