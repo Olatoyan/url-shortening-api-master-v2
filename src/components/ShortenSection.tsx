@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import ShortenedLinks from "./ShortenedLinks";
 
 type ShortenedLinksProps = {
@@ -7,8 +7,10 @@ type ShortenedLinksProps = {
 };
 
 function ShortenSection() {
+  const storedData = localStorage.getItem("shortenedLinks");
+
   const [shortenedLinks, setShortenedLinks] = useState<ShortenedLinksProps[]>(
-    [],
+    JSON.parse(storedData!) || [],
   );
   const [longLink, setLongLink] = useState("");
   const [error, setError] = useState("");
@@ -38,9 +40,19 @@ function ShortenSection() {
 
     setShortenedLinks((prevLinks) => [...prevLinks, newData]);
   }
-  // getShortenedLink();
-  // }, [longLink]);
 
+  useEffect(() => {
+    localStorage.setItem("shortenedLinks", JSON.stringify(shortenedLinks));
+  }, [shortenedLinks]);
+
+  // e: MouseEvent<HTMLButtonElement>
+  function handleDelete(index: number) {
+    setShortenedLinks((prevLinks) => prevLinks.filter((_, i) => i !== index));
+  }
+
+  function handleCopyLink(link: string) {
+    navigator.clipboard.writeText(link);
+  }
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -84,11 +96,14 @@ function ShortenSection() {
 
       {shortenedLinks.length > 0 && (
         <section className="space-y-7 pt-10">
-          {shortenedLinks.map((link) => (
+          {shortenedLinks.map((link, index) => (
             <ShortenedLinks
               key={link.shortLink}
               longLink={link.longLink}
               shortLink={link.shortLink}
+              index={index}
+              onDelete={() => handleDelete(index)}
+              onCopyLink={() => handleCopyLink(link.shortLink)}
             />
           ))}
         </section>
