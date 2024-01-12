@@ -1,5 +1,3 @@
-// import { MouseEvent } from "react";
-
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -10,7 +8,6 @@ type ShortenedLinksProps = {
   onDelete: (index: number) => void;
   onCopyLink: (link: string) => void;
 };
-// e?: MouseEvent<HTMLButtonElement>
 
 function ShortenedLinks({
   longLink,

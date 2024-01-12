@@ -25,7 +25,6 @@ function ShortenSection() {
       "(\\#[-a-z\\d_]*)?$",
     "i",
   );
-  // useEffect(() => {
   async function getShortenedLink(longLink: string) {
     try {
       setIsLoading(true);
@@ -34,7 +33,6 @@ function ShortenSection() {
       );
 
       const data = await response.text();
-      console.log(data);
 
       const newData = {
         longLink,
@@ -52,7 +50,6 @@ function ShortenSection() {
     localStorage.setItem("shortenedLinks", JSON.stringify(shortenedLinks));
   }, [shortenedLinks]);
 
-  // e: MouseEvent<HTMLButtonElement>
   function handleDelete(index: number) {
     setShortenedLinks((prevLinks) => prevLinks.filter((_, i) => i !== index));
   }
@@ -117,7 +114,6 @@ function ShortenSection() {
         )}
       </section>
 
-      {/* {shortenedLinks.length > 0 && ( */}
       <section className="space-y-7 pt-10">
         {shortenedLinks.map((link, index) => (
           <ShortenedLinks
@@ -130,7 +126,6 @@ function ShortenSection() {
           />
         ))}
       </section>
-      {/* )} */}
     </section>
   );
 }
