@@ -30,7 +30,7 @@ function ShortenSection() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `http://tinyurl.com/api-create.php?url=${longLink}`,
+        `https://tinyurl.com/api-create.php?url=${longLink}`,
       );
 
       const data = await response.text();
