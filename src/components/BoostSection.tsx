@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
 
 function BoostSection() {
+  const isMobile = window.innerWidth < 700;
+  const backgroundImg = isMobile
+    ? "./bg-boost-mobile.svg"
+    : "./bg-boost-desktop.svg";
+
   return (
-    <section className="flex flex-col items-center gap-12 bg-[#3a3054] py-24">
+    <section
+      style={{
+        background: `url(${backgroundImg}), linear-gradient(180deg, #3a3054, #3a3054)`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+      className="flex flex-col items-center gap-6 py-24"
+    >
       <h2 className="text-[4rem] font-bold leading-[4.8rem] tracking-[-0.1rem] text-white">
         Boost your links today
       </h2>

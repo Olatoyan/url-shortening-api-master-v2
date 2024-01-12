@@ -69,13 +69,20 @@ function ShortenSection() {
     }
   }
 
+  const isMobile = window.innerWidth < 700;
+  const backgroundImg = isMobile
+    ? "./bg-boost-mobile.svg"
+    : "./bg-boost-desktop.svg";
+
   return (
     <section className="mx-[16rem] -mt-40">
       <section
-        // style={{
-        //   backgroundImage: "linear-gradient(180deg, #2BD0D0 0%, #34313D 100%)",
-        // }}
-        className=" rounded-2xl bg-[#3a3054] px-24 py-20"
+        style={{
+          background: `url(${backgroundImg}), linear-gradient(180deg, #3a3054, #3a3054)`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+        className=" rounded-2xl px-24 py-20"
       >
         <form className="flex gap-10" onSubmit={handleSubmit}>
           <input
